@@ -78,6 +78,23 @@ public class Duke {
                 }
             }
 
+            // delete task
+            else if (input.length() >= 7 && input.substring(0,6).equals("delete")) {
+                try {
+                    int taskNum = Integer.parseInt(input.substring(7));
+                    if (taskNum > addedItems.size()) {
+                        throw new DukeException("     ☹ OOPS!!! List only has " + addedItems.size() + " items.");
+                    } else {
+                        Task curTask = addedItems.get(taskNum - 1);
+                        addedItems.remove(taskNum - 1);
+                        System.out.println(insertLines("     Noted. I've removed this task:\n       " + curTask
+                                + "\n     Now you have " + addedItems.size() + " tasks in the list."));
+                    }
+                } catch (DukeException e) {
+                    System.out.println(insertLines(e.getMessage()));
+                }
+            }
+
             // list added items
             else if (input.equals("list")) {
                 StringBuilder stringOfItems = new StringBuilder("     Here are the tasks in your list:\n");
