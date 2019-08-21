@@ -6,39 +6,46 @@ public class Duke {
         Task tk;
         int idxOfSlash;
 
-        if (input.length() >= 4) {
+        try {
+            if (input.length() >= 4) {
 
-            try {
                 // add Deadline
-                if (input.length() >= 8 && input.substring(0,8).equals("deadline")) {
-                    idxOfSlash = input.indexOf("/by");
+                if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) {
+                    idxOfSlash = input.indexOf("/by ");
+                    if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
+                        throw new DukeException("     ☹ OOPS!!! The description of the deadline is incorrect.");
+                    }
                     tk = new Deadline(input.substring(9, idxOfSlash - 1), input.substring(idxOfSlash + 4));
                 }
 
                 // add Event
-                else if (input.length() >= 5 && input.substring(0,5).equals("event")) {
-                    idxOfSlash = input.indexOf("/at");
+                else if (input.length() >= 5 && input.substring(0, 5).equals("event")) {
+                    idxOfSlash = input.indexOf("/at ");
+                    if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
+                        throw new DukeException("     ☹ OOPS!!! The description of the event is incorrect.");
+                    }
                     tk = new Event(input.substring(6, idxOfSlash - 1), input.substring(idxOfSlash + 4));
                 }
 
                 // add ToDos
-                else if (input.substring(0,4).equals("todo")) {
-                    tk = new ToDo(input.substring(5));
+                else if (input.substring(0, 4).equals("todo")) {
+                    try {
+                        tk = new ToDo(input.substring(5));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
                 } else {
-                    System.out.println("Invalid Input");
-                    return;
+                    throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid Input");
-                return;
+                list.add(tk);
+                System.out.println(insertLines("     Got it. I've added this task: \n       "
+                        + tk + "\n     Now you have " + list.size() + " tasks in the list."));
+            } else {
+                throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-        } else {
-            System.out.println("Invalid Input");
-            return;
+        } catch (DukeException e) {
+            System.out.println(insertLines(e.getMessage()));
         }
-        list.add(tk);
-        System.out.println(insertLines("     Got it. I've added this task: \n       "
-                + tk + "\n     Now you have " + list.size() + " tasks in the list."));
     }
 
     private static String insertLines(String input) {
@@ -52,23 +59,22 @@ public class Duke {
         String input;
 
         System.out.println(insertLines("     Hello! I'm Duke\n" + "     What can I do for you?"));
-        input = sc.nextLine();
+        input = sc.nextLine().trim();
 
         while (!input.equals("bye")) {
-
             // mark as done
             if (input.length() >= 6 && input.substring(0,4).equals("done")) {
                 try {
                     int taskNum = Integer.parseInt(input.substring(5));
                     if (taskNum > addedItems.size()) {
-                        System.out.println("List only has " + addedItems.size() + " items.");
+                        throw new DukeException("     ☹ OOPS!!! List only has " + addedItems.size() + " items.");
                     } else {
                         Task curTask = addedItems.get(taskNum - 1);
                         curTask.markDone();
                         System.out.println(insertLines("     Nice! I've marked this task as done: \n     " + curTask));
                     }
-                } catch (NumberFormatException e) {
-                    addTaskToList(addedItems, input);
+                } catch (DukeException e) {
+                    System.out.println(insertLines(e.getMessage()));
                 }
             }
 
@@ -88,7 +94,7 @@ public class Duke {
                 addTaskToList(addedItems, input);
             }
 
-            input = sc.nextLine();
+            input = sc.nextLine().trim();
         }
 
         // bye
