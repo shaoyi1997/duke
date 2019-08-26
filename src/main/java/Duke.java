@@ -1,6 +1,24 @@
 import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
+
+    private static void updateFile(ArrayList<Task> taskList) {
+        try {
+            FileWriter fw = new FileWriter("../../../data/tasks.txt", false);
+            for (Task tk : taskList) {
+                fw.write((tk instanceof Deadline ? "D"
+                            : (tk instanceof Event ? "E"
+                            : "T"))
+                            + " | " + (tk.getDoneStatus() ? "    Done" : "Not Done")
+                            + " | " + tk.getDescription() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+    }
 
     private static void addTaskToList(ArrayList<Task> list, String input) {
         Task tk;
@@ -38,6 +56,7 @@ public class Duke {
                     throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
                 list.add(tk);
+                updateFile(list);
                 System.out.println(insertLines("     Got it. I've added this task: \n       "
                         + tk + "\n     Now you have " + list.size() + " tasks in the list."));
             } else {
@@ -72,6 +91,7 @@ public class Duke {
                         Task curTask = addedItems.get(taskNum - 1);
                         curTask.markDone();
                         System.out.println(insertLines("     Nice! I've marked this task as done: \n     " + curTask));
+                        updateFile(addedItems);
                     }
                 } catch (DukeException e) {
                     System.out.println(insertLines(e.getMessage()));
@@ -89,6 +109,7 @@ public class Duke {
                         addedItems.remove(taskNum - 1);
                         System.out.println(insertLines("     Noted. I've removed this task:\n       " + curTask
                                 + "\n     Now you have " + addedItems.size() + " tasks in the list."));
+                        updateFile(addedItems);
                     }
                 } catch (DukeException e) {
                     System.out.println(insertLines(e.getMessage()));

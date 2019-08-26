@@ -11,6 +11,14 @@ public class Task {
         isDone = true;
     }
 
+    public boolean getDoneStatus() {
+        return isDone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "[" + (isDone ? '\u2713' : '\u2718') + "] " + description;
