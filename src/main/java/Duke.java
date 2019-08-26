@@ -1,6 +1,15 @@
+import java.text.ParseException;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class Duke {
+
+    private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
+
+    private static Date dateTimeParser(String dateTimeString) throws ParseException {
+        Date dateTime = format.parse(dateTimeString);
+        return dateTime;
+    }
 
     private static void addTaskToList(ArrayList<Task> list, String input) {
         Task tk;
@@ -15,7 +24,8 @@ public class Duke {
                     if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
                         throw new DukeException("     ☹ OOPS!!! The description of the deadline is incorrect.");
                     }
-                    tk = new Deadline(input.substring(9, idxOfSlash - 1), input.substring(idxOfSlash + 4));
+                    tk = new Deadline(input.substring(9, idxOfSlash - 1),
+                            format.format(dateTimeParser(input.substring(idxOfSlash + 4))));
                 }
 
                 // add Event
@@ -24,7 +34,8 @@ public class Duke {
                     if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
                         throw new DukeException("     ☹ OOPS!!! The description of the event is incorrect.");
                     }
-                    tk = new Event(input.substring(6, idxOfSlash - 1), input.substring(idxOfSlash + 4));
+                    tk = new Event(input.substring(6, idxOfSlash - 1),
+                            format.format(dateTimeParser(input.substring(idxOfSlash + 4))));
                 }
 
                 // add ToDos
@@ -45,6 +56,8 @@ public class Duke {
             }
         } catch (DukeException e) {
             System.out.println(insertLines(e.getMessage()));
+        } catch (ParseException e) {
+            System.out.println("DateTime format is incorrect");
         }
     }
 
