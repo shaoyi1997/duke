@@ -1,6 +1,5 @@
 import java.util.*;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Duke {
 
@@ -18,6 +17,29 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
+    }
+
+    private static ArrayList<Task> loadFromFile(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner sc = new Scanner(f);
+        ArrayList<Task> taskList = new ArrayList<>();
+        while (sc.hasNext()) {
+            String[] details = sc.nextLine().split("(\\s\\|\\s)");
+            String taskType = details[0];
+            Task curTask;
+            if (taskType.equals("T")) {
+                curTask = new ToDo(details[2]);
+            } else if (taskType.equals("D")) {
+                curTask = new Deadline(details[2], details[3]);
+            } else {
+                curTask = new Event(details[2], details[3]);
+            }
+            if (details[1].equals("Done")) {
+                curTask.markDone();
+            }
+            taskList.add(curTask);
+        }
+        return taskList;
     }
 
     private static void addTaskToList(ArrayList<Task> list, String input) {
@@ -74,7 +96,12 @@ public class Duke {
 
     private static void run() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> addedItems = new ArrayList<Task>();
+        ArrayList<Task> addedItems = new ArrayList<>();
+        try {
+            addedItems = loadFromFile("../../../data/tasks.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
         String input;
 
         System.out.println(insertLines("     Hello! I'm Duke\n" + "     What can I do for you?"));
