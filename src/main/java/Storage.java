@@ -1,14 +1,27 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Class that handles the loading and writing of tasks from/to a text file in the hard drive.
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructor for the storage object.
+     *
+     * @param fp string representation of the file path from the project source directory.
+     */
     public Storage(String fp) {
         filePath = fp;
     }
 
+    /**
+     * Updates the textfile with the latest tasklist by rewriting the entire tasklist.
+     *
+     * @param tasks tasklist that represents all the current tasks in the tasklist.
+     */
     public void updateFile(TaskList tasks) {
         ArrayList<Task> taskList = tasks.getTaskList();
         try {
@@ -26,6 +39,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasklist from the textfile in the hard drive.
+     *
+     * @return an arraylist consisting of the tasks parsed.
+     * @throws FileNotFoundException exception thrown when the text file cannot be found.
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner sc = new Scanner(f);

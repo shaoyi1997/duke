@@ -1,3 +1,6 @@
+/**
+ * Abstract class for a command to be executed when the user inputs a command.
+ */
 abstract public class Command {
 
     abstract public boolean isExit();
