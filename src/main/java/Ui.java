@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Ui {
 
@@ -21,6 +21,8 @@ public class Ui {
         String input = sc.nextLine().trim();
         if (input.equals("bye")) {
             return new ExitCommand();
+        } else if (input.substring(0, 4).equals("find")) {
+            return new FindCommand(input.substring(5));
         } else if (input.length() >= 6 && input.substring(0,4).equals("done")) {
             return new DoneCommand(Integer.parseInt(input.substring(5)));
         } else if ((input.length() >= 7 && input.substring(0,6).equals("delete"))) {
