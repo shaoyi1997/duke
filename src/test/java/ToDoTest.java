@@ -6,6 +6,6 @@ public class ToDoTest {
 
     @Test
     void testStringConversion() {
-        assertEquals("[T][\u2718] Test", (new ToDo("Test")).toString());
+        assertEquals("[T][0] Test", (new ToDo("Test")).toString());
     }
 }

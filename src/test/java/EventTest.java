@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EventTest {
 
@@ -11,7 +11,7 @@ class EventTest {
 
     @Test
     void testStringConversion() {
-        assertEquals("[E][\u2718] Test (at: 12/12/2000 0800)",
+        assertEquals("[E][0] Test (at: 12/12/2000 0800)",
                 new Event("Test", "12/12/2000 0800").toString());
     }
 }
