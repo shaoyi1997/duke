@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeadlineTest {
 
@@ -11,7 +11,7 @@ class DeadlineTest {
 
     @Test
     void testStringConversion() {
-        assertEquals("[D][\u2718] Test (by: 12/12/2000 0800)",
+        assertEquals("[D][0] Test (by: 12/12/2000 0800)",
                 new Deadline("Test", "12/12/2000 0800").toString());
     }
 }

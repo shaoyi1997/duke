@@ -50,6 +50,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + (isDone ? '\u2713' : '\u2718') + "] " + description;
+        return "[" + (isDone ? '1' : '0') + "] " + description;
     }
 }
