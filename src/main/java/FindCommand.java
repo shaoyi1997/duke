@@ -35,7 +35,7 @@ public class FindCommand extends Command {
      * @param storage storage object that deals with writing into the text file
      * @throws DukeException exception is thrown when no task is found.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             ArrayList<Task> tasklist = tasks.getTaskList();
             StringBuilder stringOfTasksFound = new StringBuilder("     Here are the matching tasks in your list:\n");
@@ -51,9 +51,9 @@ public class FindCommand extends Command {
                 throw new DukeException("No tasks found");
             }
             stringOfTasksFound.delete(stringOfTasksFound.length() - 1, stringOfTasksFound.length());
-            ui.showResultOfCommand(stringOfTasksFound.toString());
+            return ui.showResultOfCommand(stringOfTasksFound.toString());
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
     }
 }

@@ -31,8 +31,8 @@ public class Ui {
     /**
      * Prints the welcome message to the user.
      */
-    public void showWelcome() {
-        System.out.println(insertLines("     Hello! I'm Duke\n" + "     What can I do for you?"));
+    public String showWelcome() {
+        return "     Hello! I'm Duke\n" + "     What can I do for you?";
     }
 
     /**
@@ -54,8 +54,8 @@ public class Ui {
      *
      * @param msg completion message to be printed
      */
-    public void showResultOfCommand(String msg) {
-        System.out.println(insertLines(msg));
+    public String showResultOfCommand(String msg) {
+        return msg;
     }
 
     /**
@@ -63,14 +63,14 @@ public class Ui {
      *
      * @param msg error message to be printed.
      */
-    public void showError(String msg) {
-        System.out.println(insertLines("     ☹ OOPS!!! " + msg));
+    public String showError(String msg) {
+        return "     ☹ OOPS!!! " + msg;
     }
 
     /**
      * Displays the loading error whenever the text file in which Duke reads and writes from cannot be opened.
      */
-    public void showLoadingError() {
-        System.out.println(insertLines("     ☹ OOPS!!! The file cannot be opened"));
+    public String showLoadingError() {
+        return "     ☹ OOPS!!! The file cannot be opened";
     }
 }

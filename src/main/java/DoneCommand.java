@@ -33,18 +33,19 @@ public class DoneCommand extends Command {
      * @param storage storage object that deals with writing into the text file
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             if (taskNumber > tasks.getNumOfTask() || taskNumber < 1) {
                 throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
             } else {
                 Task curTask = tasks.getTaskByIndex(taskNumber - 1);
                 curTask.markDone();
-                ui.showResultOfCommand("     Nice! I've marked this task as done: \n     " + curTask);
                 storage.updateFile(tasks);
+                return ui.showResultOfCommand("     Nice! I've marked this task as done: \n     " + curTask);
+
             }
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
     }
 }

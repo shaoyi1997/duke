@@ -25,7 +25,7 @@ public class ExitCommand extends Command {
      * @param ui ui object that deals with user interaction
      * @param storage storage object that deals with writing into the text file
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showResultOfCommand("     Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showResultOfCommand("     Bye. Hope to see you again soon!");
     }
 }
