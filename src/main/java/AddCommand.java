@@ -22,7 +22,9 @@ public class AddCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the add command.

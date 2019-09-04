@@ -19,7 +19,9 @@ public class DoneCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the done command.

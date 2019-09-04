@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Class that represents the tasklist that holds all the tasks in Duke.
@@ -20,7 +20,7 @@ public class TaskList {
      *
      * @param ls tasklist to be initialized with.
      */
-    public TaskList (ArrayList<Task> ls) {
+    public TaskList(ArrayList<Task> ls) {
         this.addedItems = ls;
     }
 

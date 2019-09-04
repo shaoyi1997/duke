@@ -21,7 +21,9 @@ public class FindCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the find command.

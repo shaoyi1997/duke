@@ -52,7 +52,7 @@ public class Duke {
 
     /**
      * Main method.
-     * @param args
+     * @param args main method argument
      */
     public static void main(String[] args) {
         new Duke("../../../data/tasks.txt").run();

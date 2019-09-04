@@ -3,7 +3,7 @@
  */
 public class DukeException extends Exception {
 
-    public DukeException (String msg) {
+    public DukeException(String msg) {
         super(msg);
     }
 }

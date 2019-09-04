@@ -6,14 +6,17 @@ public class ListCommand extends Command {
     /**
      * Constructor for the list command.
      */
-    public ListCommand() {}
+    public ListCommand() {
+    }
 
     /**
      * Indicates whether this is an exit command.
      *
      * @return false.
      */
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the list command.

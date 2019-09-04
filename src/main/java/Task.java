@@ -26,7 +26,7 @@ public class Task {
     }
 
     /**
-     * Returns whether the task is done or not
+     * Returns whether the task is done or not.
      *
      * @return boolean flag indicating whether the task is done or not
      */

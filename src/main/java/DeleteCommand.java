@@ -19,7 +19,9 @@ public class DeleteCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the delete command.
