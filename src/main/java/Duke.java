@@ -40,7 +40,8 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                Command c = ui.readCommand();
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {

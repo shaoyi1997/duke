@@ -14,7 +14,7 @@ public class Storage {
      * @param fp string representation of the file path from the project source directory.
      */
     public Storage(String fp) {
-        filePath = fp;
+        this.filePath = fp;
     }
 
     /**

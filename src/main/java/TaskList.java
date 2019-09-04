@@ -21,7 +21,7 @@ public class TaskList {
      * @param ls tasklist to be initialized with.
      */
     public TaskList (ArrayList<Task> ls) {
-        addedItems = ls;
+        this.addedItems = ls;
     }
 
     /**

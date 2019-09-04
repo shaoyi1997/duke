@@ -13,7 +13,7 @@ public class Ui {
      * Initializes the Scanner object.
      */
     public Ui() {
-        sc = new Scanner(System.in);
+        this.sc = new Scanner(System.in);
     }
 
     /**
@@ -40,21 +40,8 @@ public class Ui {
      * @return Command object that specifies what command the user has given.
      * @throws DukeException exception is thrown when the command cannot be found or does not meet its specifications.
      */
-    public Command readCommand() throws DukeException {
-        String input = sc.nextLine().trim();
-        if (input.equals("bye")) {
-            return new ExitCommand();
-        } else if (input.substring(0, 4).equals("find")) {
-            return new FindCommand(input.substring(5));
-        } else if (input.length() >= 6 && input.substring(0,4).equals("done")) {
-            return new DoneCommand(Integer.parseInt(input.substring(5)));
-        } else if ((input.length() >= 7 && input.substring(0,6).equals("delete"))) {
-            return new DeleteCommand(Integer.parseInt(input.substring(7)));
-        } else if (input.equals("list")) {
-            return new ListCommand();
-        } else {
-            return new AddCommand(input);
-        }
+    public String readCommand() {
+        return sc.nextLine().trim();
     }
 
     /**

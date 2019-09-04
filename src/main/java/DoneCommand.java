@@ -11,7 +11,7 @@ public class DoneCommand extends Command {
      * @param taskNum the index of the task to be marked done.
      */
     public DoneCommand(int taskNum) {
-        taskNumber = taskNum;
+        this.taskNumber = taskNum;
     }
 
     /**
