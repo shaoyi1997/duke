@@ -64,7 +64,7 @@ public class Storage {
             } else {
                 curTask = new Event(details[2], details[3]);
             }
-            if (details[1].equals("Done")) {
+            if (details[1].equals("    Done")) {
                 curTask.markDone();
             }
             taskList.add(curTask);

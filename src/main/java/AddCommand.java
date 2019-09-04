@@ -35,20 +35,21 @@ public class AddCommand extends Command {
      * @param tasks tasklist that stores all the tasks
      * @param ui ui object that deals with user interaction
      * @param storage storage object that deals with writing into the text file
+     * @return string representation of the command response
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {
             Task tk = Parser.parseAddCommand(input);
             tasks.addTask(tk);
             storage.updateFile(tasks);
-            ui.showResultOfCommand("     Got it. I've added this task: \n       "
+            return ui.showResultOfCommand("     Got it. I've added this task: \n       "
                                            + tk + "\n     Now you have " + tasks.getNumOfTask()
                                            + " tasks in the list.");
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         } catch (ParseException e) {
-            ui.showError("I'm sorry, but the datetime format is incorrect :-(");
+            return ui.showError("I'm sorry, but the datetime format is incorrect :-(");
         }
 
     }
