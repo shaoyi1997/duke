@@ -31,6 +31,7 @@ public class DoneCommand extends Command {
      * @param tasks tasklist that stores all the tasks
      * @param ui ui object that deals with user interaction
      * @param storage storage object that deals with writing into the text file
+     * @return string representation of the command response
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

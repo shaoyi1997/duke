@@ -18,57 +18,30 @@ public class Ui {
     }
 
     /**
-     * Inserts a line above and below the input string.
-     *
-     * @param input input string to be sandwiched by lines.
-     * @return string consisting of the input and two lines, above and below the string
-     */
-    public static String insertLines(String input) {
-        return "    ____________________________________________________________" + "\n" + input + "\n"
-                + "    ____________________________________________________________";
-    }
-
-    /**
-     * Prints the welcome message to the user.
-     */
-    public String showWelcome() {
-        return "     Hello! I'm Duke\n" + "     What can I do for you?";
-    }
-
-    /**
-     * Parses the command given by the user.
-     *
-     * @return Command object that specifies what command the user has given.
-     * @throws DukeException exception is thrown when the command cannot be found or does not meet its specifications.
-     */
-    public String readCommand() throws DukeException {
-        try {
-            return sc.nextLine().trim();
-        } catch (NoSuchElementException e) {
-            throw new DukeException("Please input your next command.");
-        }
-    }
-
-    /**
-     * Displays the successful completion message after the completion of a command.
+     * Returns the successful completion message after the completion of a command.
      *
      * @param msg completion message to be printed
+     * @return string representation of the command response
      */
     public String showResultOfCommand(String msg) {
         return msg;
     }
 
     /**
-     * Displays the error message whenever a error is found.
+     * Returns the error message whenever a error is found.
      *
      * @param msg error message to be printed.
+     * @return string representation of the error message
      */
     public String showError(String msg) {
         return "     ☹ OOPS!!! " + msg;
     }
 
     /**
-     * Displays the loading error whenever the text file in which Duke reads and writes from cannot be opened.
+     * Returns the loading error whenever the text file in which Duke reads and writes from cannot
+     * be opened.
+     *
+     * @return string representation of loading error
      */
     public String showLoadingError() {
         return "     ☹ OOPS!!! The file cannot be opened";
