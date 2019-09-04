@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -40,8 +41,12 @@ public class Ui {
      * @return Command object that specifies what command the user has given.
      * @throws DukeException exception is thrown when the command cannot be found or does not meet its specifications.
      */
-    public String readCommand() {
-        return sc.nextLine().trim();
+    public String readCommand() throws DukeException {
+        try {
+            return sc.nextLine().trim();
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Please input your next command.");
+        }
     }
 
     /**
