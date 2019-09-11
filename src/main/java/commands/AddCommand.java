@@ -23,6 +23,7 @@ public class AddCommand extends Command {
      * @param ipt the string representation of the command input.
      */
     public AddCommand(String ipt) {
+        assert !input.equals("") : "input should not be empty";
         this.input = ipt;
     }
 
