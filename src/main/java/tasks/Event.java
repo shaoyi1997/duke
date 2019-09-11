@@ -4,7 +4,7 @@ package tasks;
  * Class for the event task.
  * Contains a description of the task and the datetime on which the event starts.
  */
-public class Event extends Task {
+public class Event extends TimeframedTask {
 
     protected String at;
 
@@ -28,6 +28,15 @@ public class Event extends Task {
     @Override
     public String getDescription() {
         return description + " | " + at;
+    }
+
+    /**
+     * Updates dateTime to the new dateTime given.
+     *
+     * @param newDateTime updated dateTime.
+     */
+    public void setDateTime(String newDateTime) {
+        this.at = newDateTime;
     }
 
     /**

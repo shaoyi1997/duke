@@ -1,12 +1,6 @@
 package parser;
 
-import commands.Command;
-import commands.DoneCommand;
-import commands.ExitCommand;
-import commands.FindCommand;
-import commands.ListCommand;
-import commands.DeleteCommand;
-import commands.AddCommand;
+import commands.*;
 import exception.DukeException;
 import tasks.Deadline;
 import tasks.Event;
@@ -35,6 +29,8 @@ public class Parser {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         } else if (input.substring(0, 4).equals("find")) {
             return new FindCommand(input.substring(5));
+        } else if (input.length() >= 8 && input.substring(0,6).equals("update")) {
+            return new UpdateCommand(Integer.parseInt(input.substring(7,8)), input.substring(8));
         } else if (input.length() >= 6 && input.substring(0,4).equals("done")) {
             return new DoneCommand(Integer.parseInt(input.substring(5)));
         } else if ((input.length() >= 7 && input.substring(0,6).equals("delete"))) {

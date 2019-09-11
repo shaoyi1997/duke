@@ -5,6 +5,8 @@ package commands;
  */
 abstract public class IndexingCommand extends Command {
 
+    protected int taskNumber;
+
     /**
      * Checks if the task's index given is out of range.
      *

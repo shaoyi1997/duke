@@ -11,15 +11,13 @@ import ui.Ui;
  */
 public class DoneCommand extends IndexingCommand {
 
-    private int taskNumber;
-
     /**
      * Constructor for the done command.
      *
      * @param taskNum the index of the task to be marked done.
      */
     public DoneCommand(int taskNum) {
-        this.taskNumber = taskNum;
+        super.taskNumber = taskNum;
     }
 
     /**

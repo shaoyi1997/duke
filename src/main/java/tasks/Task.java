@@ -46,6 +46,17 @@ public class Task {
     }
 
     /**
+     * Updates description to the new description given.
+     *
+     * @param newDescription updated description.
+     */
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
+
+
+    /**
      * Returns the string representation of the task.
      *
      * @return string consisting of done marker and description of the task.

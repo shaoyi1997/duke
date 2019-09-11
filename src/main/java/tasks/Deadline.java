@@ -4,7 +4,7 @@ package tasks;
  * Class for the deadline task.
  * Contains a description of the task and the datetime for which it is due.
  */
-public class Deadline extends Task {
+public class Deadline extends TimeframedTask {
 
     protected String by;
 
@@ -28,6 +28,15 @@ public class Deadline extends Task {
     @Override
     public String getDescription() {
         return description + " | " + by;
+    }
+
+    /**
+     * Updates dateTime to the new dateTime given.
+     *
+     * @param newDateTime updated dateTime.
+     */
+    public void setDateTime(String newDateTime) {
+        this.by = newDateTime;
     }
 
     /**
