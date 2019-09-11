@@ -14,6 +14,7 @@ public class AddCommand extends Command {
      * @param ipt the string representation of the command input.
      */
     public AddCommand(String ipt) {
+        assert !input.equals("") : "input should not be empty";
         this.input = ipt;
     }
 
@@ -38,7 +39,6 @@ public class AddCommand extends Command {
      * @return string representation of the command response
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {
             Task tk = Parser.parseAddCommand(input);
             tasks.addTask(tk);

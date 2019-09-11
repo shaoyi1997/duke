@@ -41,8 +41,11 @@ public class Parser {
      * @throws ParseException thrown when datetime is in incorrect format
      */
     protected static Task parseAddCommand(String input) throws DukeException, ParseException {
+        assert input.length() > 3 : "input is incorrect";
+
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
         int idxOfSlash;
+
         if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) { // add Deadline
             idxOfSlash = input.indexOf("/by ");
             if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {

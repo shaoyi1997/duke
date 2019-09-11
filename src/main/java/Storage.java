@@ -15,10 +15,11 @@ public class Storage {
     /**
      * Constructor for the storage object.
      *
-     * @param fp string representation of the file path from the project source directory.
+     * @param filePath string representation of the file path from the project source directory.
      */
-    public Storage(String fp) {
-        this.filePath = fp;
+    public Storage(String filePath) {
+        assert !filePath.equals("") : "filePath should not be empty";
+        this.filePath = filePath;
     }
 
     /**
@@ -29,7 +30,8 @@ public class Storage {
     public void updateFile(TaskList tasks) {
         ArrayList<Task> taskList = tasks.getTaskList();
         try {
-            FileWriter fw = new FileWriter(filePath, false);
+            File f = new File(filePath);
+            FileWriter fw = new FileWriter(f, false);
             for (Task tk : taskList) {
                 fw.write((tk instanceof Deadline ? "D"
                         : (tk instanceof Event ? "E"
