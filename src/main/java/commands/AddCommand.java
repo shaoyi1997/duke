@@ -1,3 +1,12 @@
+package commands;
+
+import exception.DukeException;
+import parser.Parser;
+import storage.Storage;
+import tasks.Task;
+import tasks.TaskList;
+import ui.Ui;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -22,7 +31,7 @@ public class AddCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return false;
     }
 
@@ -38,7 +47,6 @@ public class AddCommand extends Command {
      * @return string representation of the command response
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {
             Task tk = Parser.parseAddCommand(input);
             tasks.addTask(tk);

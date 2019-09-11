@@ -1,3 +1,5 @@
+package tasks;
+
 /**
  * Class for a task in Duke.
  * Consists of the description of the task and a marker to indicate if it is done.

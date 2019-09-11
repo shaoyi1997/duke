@@ -1,3 +1,18 @@
+package parser;
+
+import commands.Command;
+import commands.DoneCommand;
+import commands.ExitCommand;
+import commands.FindCommand;
+import commands.ListCommand;
+import commands.DeleteCommand;
+import commands.AddCommand;
+import exception.DukeException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -40,24 +55,21 @@ public class Parser {
      * @throws DukeException thrown when input length is less than 4
      * @throws ParseException thrown when datetime is in incorrect format
      */
-    protected static Task parseAddCommand(String input) throws DukeException, ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
+    public static Task parseAddCommand(String input) throws DukeException, ParseException {
         int idxOfSlash;
-        if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) { // add Deadline
+        if (isDeadline(input)) { // add Deadline
             idxOfSlash = input.indexOf("/by ");
-            if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
+            if (!isSlashPresent(idxOfSlash)) {
                 throw new DukeException("The description of the deadline is incorrect.");
             }
-            return new Deadline(input.substring(9, idxOfSlash - 1),
-                                format.format(format.parse(input.substring(idxOfSlash + 4))));
-        } else if (input.length() >= 5 && input.substring(0, 5).equals("event")) { // add Event
+            return new Deadline(input.substring(9, idxOfSlash - 1), parseDateTime(input, idxOfSlash));
+        } else if (isEvent(input)) { // add Event
             idxOfSlash = input.indexOf("/at ");
-            if (idxOfSlash == -1 || input.split(" ")[1].contains("/")) {
+            if (!isSlashPresent(idxOfSlash)) {
                 throw new DukeException("The description of the event is incorrect.");
             }
-            return new Event(input.substring(6, idxOfSlash - 1),
-                             format.format(format.parse(input.substring(idxOfSlash + 4))));
-        } else if (input.substring(0, 4).equals("todo")) { // add ToDos
+            return new Event(input.substring(6, idxOfSlash - 1), parseDateTime(input, idxOfSlash));
+        } else if (isToDo(input)) { // add ToDos
             try {
                 return new ToDo(input.substring(5));
             } catch (StringIndexOutOfBoundsException e) {
@@ -66,6 +78,27 @@ public class Parser {
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
+    }
+
+    private static boolean isDeadline(String input) {
+        return input.length() >= 8 && input.substring(0, 8).equals("deadline");
+    }
+
+    private static boolean isEvent(String input) {
+        return input.length() >= 5 && input.substring(0, 5).equals("event");
+    }
+
+    private static boolean isToDo(String input) {
+        return input.substring(0, 4).equals("todo");
+    }
+
+    private static boolean isSlashPresent(int idxOfSlash) {
+        return idxOfSlash != -1;
+    }
+
+    private static String parseDateTime(String input, int idxOfSlash) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        return format.format(format.parse(input.substring(idxOfSlash + 4)));
     }
 
 }

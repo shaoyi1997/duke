@@ -1,3 +1,9 @@
+package commands;
+
+import storage.Storage;
+import tasks.TaskList;
+import ui.Ui;
+
 /**
  * Class for the command that prompts the program to terminate.
  */
@@ -14,7 +20,7 @@ public class ExitCommand extends Command {
      *
      * @return true.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return true;
     }
 

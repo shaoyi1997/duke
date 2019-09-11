@@ -1,3 +1,7 @@
+package storage;
+
+import tasks.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -53,17 +57,26 @@ public class Storage {
         File f = new File(filePath);
         Scanner sc = new Scanner(f);
         ArrayList<Task> taskList = new ArrayList<>();
+
         while (sc.hasNext()) {
             String[] details = sc.nextLine().split("(\\s\\|\\s)");
-            String taskType = details[0];
+
             Task curTask;
+            String taskType = details[0];
+            String description = details[2];
+
+
             if (taskType.equals("T")) {
-                curTask = new ToDo(details[2]);
-            } else if (taskType.equals("D")) {
-                curTask = new Deadline(details[2], details[3]);
+                curTask = new ToDo(description);
             } else {
-                curTask = new Event(details[2], details[3]);
+                String dateTime = details[3];
+                if (taskType.equals("D")) {
+                    curTask = new Deadline(description, dateTime);
+                } else {
+                    curTask = new Event(description, dateTime);
+                }
             }
+
             if (details[1].equals("    Done")) {
                 curTask.markDone();
             }

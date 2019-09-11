@@ -1,7 +1,16 @@
+package commands;
+
+
+import exception.DukeException;
+import storage.Storage;
+import tasks.Task;
+import tasks.TaskList;
+import ui.Ui;
+
 /**
  * Class for the command that deletes a task from the tasklist.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends IndexingCommand {
 
     private int taskNumber;
 
@@ -19,7 +28,7 @@ public class DeleteCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return false;
     }
 
@@ -36,7 +45,7 @@ public class DeleteCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            if (taskNumber > tasks.getNumOfTask() || taskNumber < 1) {
+            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
                 throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
             } else {
                 Task curTask = tasks.getTaskByIndex(taskNumber - 1);
@@ -50,4 +59,5 @@ public class DeleteCommand extends Command {
             return ui.showError(e.getMessage());
         }
     }
+
 }
