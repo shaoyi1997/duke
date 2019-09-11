@@ -48,4 +48,18 @@ public class Event extends TimeframedTask {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
+
+    /**
+     * Returns the cloned task.
+     *
+     * @return cloned task with identical description and done status.
+     */
+    @Override
+    public Event clone() {
+        Event task = new Event(description, at);
+        if (isDone) {
+            task.markDone();
+        }
+        return task;
+    }
 }

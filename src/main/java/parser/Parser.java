@@ -29,12 +29,14 @@ public class Parser {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         } else if (input.substring(0, 4).equals("find")) {
             return new FindCommand(input.substring(5));
-        } else if (input.length() >= 8 && input.substring(0,6).equals("update")) {
-            return new UpdateCommand(Integer.parseInt(input.substring(7,8)), input.substring(8));
         } else if (input.length() >= 6 && input.substring(0,4).equals("done")) {
             return new DoneCommand(Integer.parseInt(input.substring(5)));
-        } else if ((input.length() >= 7 && input.substring(0,6).equals("delete"))) {
+        } else if (input.length() >= 7 && input.substring(0,5).equals("clone")) {
+            return new CloneCommand(Integer.parseInt(input.substring(6)));
+        } else if ((input.length() >= 8 && input.substring(0,6).equals("delete"))) {
             return new DeleteCommand(Integer.parseInt(input.substring(7)));
+        } else if (input.length() >= 8 && input.substring(0,6).equals("update")) {
+            return new UpdateCommand(Integer.parseInt(input.substring(7,8)), input.substring(8));
         } else if (input.equals("list")) {
             return new ListCommand();
         } else {

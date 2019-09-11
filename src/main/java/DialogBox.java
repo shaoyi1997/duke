@@ -31,6 +31,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
             HBox.setHgrow(dialog, Priority.ALWAYS); // box will resize according to text
+            HBox.setHgrow(displayPicture, Priority.ALWAYS);
         } catch (IOException e) {
             e.printStackTrace();
         }

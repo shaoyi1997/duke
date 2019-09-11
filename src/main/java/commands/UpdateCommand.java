@@ -37,9 +37,9 @@ public class UpdateCommand extends IndexingCommand {
     }
 
     /**
-     * Executes the update command.
+     * Executes the update command in the form of "update [taskNumber] [/field] [new field]"
      * Given task at the index position will be updated based on the given fields.
-     * A completion message will be displayed after successful deletion.
+     * A completion message will be displayed after successful update.
      *
      * @param tasks tasklist that stores all the tasks
      * @param ui ui object that deals with user interaction

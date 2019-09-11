@@ -48,4 +48,18 @@ public class Deadline extends TimeframedTask {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * Returns the cloned task.
+     *
+     * @return cloned task with identical description and done status.
+     */
+    @Override
+    public Deadline clone() {
+        Deadline task = new Deadline(description, by);
+        if (isDone) {
+            task.markDone();
+        }
+        return task;
+    }
 }

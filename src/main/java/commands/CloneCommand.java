@@ -1,6 +1,5 @@
 package commands;
 
-
 import exception.DukeException;
 import storage.Storage;
 import tasks.Task;
@@ -8,16 +7,16 @@ import tasks.TaskList;
 import ui.Ui;
 
 /**
- * Class for the command that deletes a task from the tasklist.
+ * Class representing the command that clones a task represented by its index.
  */
-public class DeleteCommand extends IndexingCommand {
+public class CloneCommand extends IndexingCommand {
 
     /**
-     * Constructor for the delete command.
+     * Constructor for the clone command.
      *
-     * @param taskNum the index of the task to be deleted
+     * @param taskNum the index of the task to be cloned.
      */
-    public DeleteCommand(int taskNum) {
+    public CloneCommand(int taskNum) {
         this.taskNumber = taskNum;
     }
 
@@ -31,9 +30,9 @@ public class DeleteCommand extends IndexingCommand {
     }
 
     /**
-     * Executes the delete command.
-     * Given task will be deleted from the tasklist at the index position.
-     * A completion message will be displayed after successful deletion.
+     * Executes the clone command.
+     * Given task at the given index will be cloned into the tasklist.
+     * A completion message will be displayed after successful cloning.
      *
      * @param tasks tasklist that stores all the tasks
      * @param ui ui object that deals with user interaction
@@ -47,10 +46,10 @@ public class DeleteCommand extends IndexingCommand {
                 throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
             } else {
                 Task curTask = tasks.getTaskByIndex(taskNumber - 1);
-                tasks.deleteTaskByIdx(taskNumber - 1);
+                tasks.addTask(curTask.clone());
                 storage.updateFile(tasks);
-                return ui.showResultOfCommand("     Noted. I've removed this task:\n       " + curTask
-                        + "\n     Now you have " + tasks.getNumOfTask() + " tasks in the list.");
+                return ui.showResultOfCommand("     Noted. I've cloned this task:\n       " + curTask
+                                                      + "\n     Now you have " + tasks.getNumOfTask() + " tasks in the list.");
 
             }
         } catch (DukeException e) {

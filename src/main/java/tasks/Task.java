@@ -65,4 +65,18 @@ public class Task {
     public String toString() {
         return "[" + (isDone ? '1' : '0') + "] " + description;
     }
+
+    /**
+     * Returns the cloned task.
+     *
+     * @return cloned task with identical description and done status.
+     */
+    @Override
+    public Task clone() {
+        Task tk = new Task(description);
+        if (isDone) {
+            tk.markDone();
+        }
+        return tk;
+    }
 }
