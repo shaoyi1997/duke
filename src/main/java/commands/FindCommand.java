@@ -1,3 +1,11 @@
+package commands;
+
+import exception.DukeException;
+import storage.Storage;
+import tasks.Task;
+import tasks.TaskList;
+import ui.Ui;
+
 import java.util.ArrayList;
 
 /**
@@ -21,7 +29,7 @@ public class FindCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return false;
     }
 
@@ -38,10 +46,10 @@ public class FindCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            ArrayList<Task> tasklist = tasks.getTaskList();
+            ArrayList<Task> taskList = tasks.getTaskList();
             StringBuilder stringOfTasksFound = new StringBuilder("     Here are the matching tasks in your list:\n");
             int counter = 0;
-            for (Task tk : tasklist) {
+            for (Task tk : taskList) {
                 String curTaskDescription = tk.getDescription();
                 if (curTaskDescription.contains(input)) {
                     stringOfTasksFound.append("     " + (counter + 1) + ". " + tk.toString() +

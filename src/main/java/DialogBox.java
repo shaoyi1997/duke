@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 /**
  * An example of a custom control using FXML.
@@ -29,6 +30,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            HBox.setHgrow(dialog, Priority.ALWAYS); // box will resize according to text
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,3 +1,10 @@
+package commands;
+
+import storage.Storage;
+import tasks.Task;
+import tasks.TaskList;
+import ui.Ui;
+
 /**
  * Class for the command that prompts the program to terminate.
  */
@@ -14,7 +21,7 @@ public class ListCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return false;
     }
 

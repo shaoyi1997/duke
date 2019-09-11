@@ -52,6 +52,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
         if (input.equals("bye")) {
             Platform.exit(); // closes the app when user gives exit command
         }

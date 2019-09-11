@@ -1,3 +1,5 @@
+package exception;
+
 /**
  * Class that represents an exception thrown when Duke encounters an invalid command.
  */

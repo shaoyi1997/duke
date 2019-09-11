@@ -1,7 +1,15 @@
+package commands;
+
+import exception.DukeException;
+import storage.Storage;
+import tasks.Task;
+import tasks.TaskList;
+import ui.Ui;
+
 /**
  * Class for the command that marks a given task done given its index.
  */
-public class DoneCommand extends Command {
+public class DoneCommand extends IndexingCommand {
 
     private int taskNumber;
 
@@ -19,7 +27,7 @@ public class DoneCommand extends Command {
      *
      * @return false.
      */
-    public boolean isExit() {
+    public boolean isExitCommand() {
         return false;
     }
 
@@ -36,14 +44,13 @@ public class DoneCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            if (taskNumber > tasks.getNumOfTask() || taskNumber < 1) {
+            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
                 throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
             } else {
                 Task curTask = tasks.getTaskByIndex(taskNumber - 1);
                 curTask.markDone();
                 storage.updateFile(tasks);
                 return ui.showResultOfCommand("     Nice! I've marked this task as done: \n     " + curTask);
-
             }
         } catch (DukeException e) {
             return ui.showError(e.getMessage());

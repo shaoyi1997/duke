@@ -1,3 +1,5 @@
+package tasks;
+
 /**
  * Class for the deadline task.
  * Contains a description of the task and the datetime for which it is due.
