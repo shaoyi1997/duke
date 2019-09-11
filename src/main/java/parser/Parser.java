@@ -55,19 +55,9 @@ public class Parser {
      * @throws DukeException thrown when input length is less than 4
      * @throws ParseException thrown when datetime is in incorrect format
      */
-<<<<<<< HEAD:src/main/java/parser/Parser.java
     public static Task parseAddCommand(String input) throws DukeException, ParseException {
         int idxOfSlash;
         if (isDeadline(input)) { // add Deadline
-=======
-    protected static Task parseAddCommand(String input) throws DukeException, ParseException {
-        assert input.length() > 3 : "input is incorrect";
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
-        int idxOfSlash;
-
-        if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) { // add Deadline
->>>>>>> 5ba93039faa93c55aa3fb0a3959b419d5ff1dc4d:src/main/java/Parser.java
             idxOfSlash = input.indexOf("/by ");
             if (!isSlashPresent(idxOfSlash)) {
                 throw new DukeException("The description of the deadline is incorrect.");
