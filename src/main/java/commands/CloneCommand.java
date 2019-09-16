@@ -41,19 +41,17 @@ public class CloneCommand extends IndexingCommand {
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
-                throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
-            } else {
-                Task curTask = tasks.getTaskByIndex(taskNumber - 1);
-                tasks.addTask(curTask.clone());
-                storage.updateFile(tasks);
-                return ui.showResultOfCommand("     Noted. I've cloned this task:\n       " + curTask
-                                                      + "\n     Now you have " + tasks.getNumOfTask() + " tasks in the list.");
+        if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
+            throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
+        } else {
+            Task curTask = tasks.getTaskByIndex(taskNumber - 1);
+            tasks.addTask(curTask.clone());
+            storage.updateFile(tasks);
+            return ui.showResultOfCommand("     Noted. I've cloned this task:\n       "
+                                                  + curTask
+                                                  + "\n     Now you have " + tasks.getNumOfTask()
+                                                  + " tasks in the list.");
 
-            }
-        } catch (DukeException e) {
-            return ui.showError(e.getMessage());
         }
     }
 

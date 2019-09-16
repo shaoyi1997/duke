@@ -48,47 +48,61 @@ public class UpdateCommand extends IndexingCommand {
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
-                throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
-            } else {
-                Task curTask = tasks.getTaskByIndex(taskNumber - 1);
-                Scanner commandDetailsParser = new Scanner(commandInput);
-                String word = commandDetailsParser.next();
-                while (commandDetailsParser.hasNext()) {
-                    String nextWord = commandDetailsParser.next();
+        if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
+            throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
+        } else {
+            Task curTask = tasks.getTaskByIndex(taskNumber - 1);
+            String[] newDetails = parseCommand(); // parses command and gets new details
+            String newDescription = newDetails[0];
+            String newDateTime = newDetails[1];
 
-                    if (word.equals("/description")) {
-                        String newDescription = "";
-                        try {
-                            while (!nextWord.contains("/")) {
-                                newDescription += nextWord + " ";
-                                if (commandDetailsParser.hasNext()) {
-                                    nextWord = commandDetailsParser.next();
-                                } else {
-                                    break;
-                                }
-                            }
-                        } catch (NullPointerException e) {
-                            throw new DukeException("Description field cannot be empty");
-                        }
-                        curTask.setDescription(newDescription.trim());
-                        word = nextWord;
-                    } else if (word.equals("/datetime")) {
-                        String newDateTime =
-                                nextWord + " " + commandDetailsParser.next();
-                        TimeframedTask curTimeframedTask = (TimeframedTask)curTask;
-                        curTimeframedTask.setDateTime(newDateTime);
-                    } else {
-                        throw new DukeException("Please specify your field to change.");
-                    }
-                }
-                return ui.showResultOfCommand("     Noted. I've updated this task:\n       "
-                                                      + curTask);
-
+            if (!newDescription.isEmpty()) {
+                curTask.setDescription(newDescription.trim()); // updates description field of task
             }
-        } catch (DukeException e) {
-            return ui.showError(e.getMessage());
+            if (!newDateTime.isEmpty()) {
+                TimeframedTask curTimeframedTask = (TimeframedTask)curTask;
+                curTimeframedTask.setDateTime(newDateTime);
+            }
+            return ui.showResultOfCommand("     Noted. I've updated this task:\n       "
+                                                  + curTask);
+
         }
+    }
+
+    private String[] parseCommand() throws DukeException {
+        String newDescription = "";
+        String newDateTime = "";
+        Scanner commandDetailsParser = new Scanner(commandInput);
+
+        // loop to parse command
+        String word = commandDetailsParser.next();
+        while (commandDetailsParser.hasNext()) {
+            String nextWord = commandDetailsParser.next();
+
+            if (word.equals("/description")) {
+                try {
+                    while (!nextWord.contains("/")) {
+                        newDescription += nextWord + " ";
+                        if (commandDetailsParser.hasNext()) {
+                            nextWord = commandDetailsParser.next();
+                        } else {
+                            break;
+                        }
+                    }
+                } catch (NullPointerException e) {
+                    throw new DukeException("Description field cannot be empty");
+                }
+                word = nextWord;
+            } else if (word.equals("/datetime")) {
+                newDateTime = nextWord + " " + commandDetailsParser.next();
+            } else {
+                throw new DukeException("Please specify your field to change.");
+            }
+        }
+
+        String[] newDetails = new String[2];
+        newDetails[0] = newDescription;
+        newDetails[1] = newDateTime;
+        return newDetails;
     }
 }

@@ -1,7 +1,7 @@
 package tasks;
 
 /**
- * Class that represents tasks with a dateTime field;
+ * Class that represents tasks with a dateTime field.
  */
 abstract public class TimeframedTask extends Task {
 
