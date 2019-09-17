@@ -13,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-//run {
-//    standardInput = System.in
-//}
-
 application {
     // Change this to your main class.
     mainClassName = "Launcher"

@@ -3,7 +3,6 @@ jdk:
   -oraclejdk11
 
 script:
-  - ./gradlew clean test
   - ./gradlew build --scan -s
 
 deploy:
