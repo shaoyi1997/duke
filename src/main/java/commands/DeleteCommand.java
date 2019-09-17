@@ -15,7 +15,7 @@ public class DeleteCommand extends IndexingCommand {
     /**
      * Constructor for the delete command.
      *
-     * @param taskNum the index of the task to be deleted
+     * @param taskNum the index of the task to be deleted.
      */
     public DeleteCommand(int taskNum) {
         this.taskNumber = taskNum;
@@ -42,19 +42,15 @@ public class DeleteCommand extends IndexingCommand {
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
-                throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
-            } else {
-                Task curTask = tasks.getTaskByIndex(taskNumber - 1);
-                tasks.deleteTaskByIdx(taskNumber - 1);
-                storage.updateFile(tasks);
-                return ui.showResultOfCommand("     Noted. I've removed this task:\n       " + curTask
-                        + "\n     Now you have " + tasks.getNumOfTask() + " tasks in the list.");
+        if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
+            throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
+        } else {
+            Task curTask = tasks.getTaskByIndex(taskNumber - 1);
+            tasks.deleteTaskByIdx(taskNumber - 1);
+            storage.updateFile(tasks);
+            return ui.showResultOfCommand("     Noted. I've removed this task:\n       " + curTask
+                    + "\n     Now you have " + tasks.getNumOfTask() + " tasks in the list.");
 
-            }
-        } catch (DukeException e) {
-            return ui.showError(e.getMessage());
         }
     }
 

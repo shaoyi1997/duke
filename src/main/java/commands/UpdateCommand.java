@@ -7,6 +7,7 @@ import tasks.TaskList;
 import tasks.TimeframedTask;
 import ui.Ui;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -73,9 +74,14 @@ public class UpdateCommand extends IndexingCommand {
         String newDescription = "";
         String newDateTime = "";
         Scanner commandDetailsParser = new Scanner(commandInput);
+        String word;
 
         // loop to parse command
-        String word = commandDetailsParser.next();
+        try {
+            word = commandDetailsParser.next();
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Please indicate the field(s) you want to update.");
+        }
         while (commandDetailsParser.hasNext()) {
             String nextWord = commandDetailsParser.next();
 

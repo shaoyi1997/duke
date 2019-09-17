@@ -21,7 +21,7 @@ public class FindCommand extends Command {
      * @param ipt the string of search query.
      */
     public FindCommand(String ipt) {
-        input = ipt;
+        input = ipt.toLowerCase();
     }
 
     /**
@@ -45,25 +45,21 @@ public class FindCommand extends Command {
      * @throws DukeException exception is thrown when no task is found.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            ArrayList<Task> taskList = tasks.getTaskList();
-            StringBuilder stringOfTasksFound = new StringBuilder("     Here are the matching tasks in your list:\n");
-            int counter = 0;
-            for (Task tk : taskList) {
-                String curTaskDescription = tk.getDescription();
-                if (curTaskDescription.contains(input)) {
-                    stringOfTasksFound.append("     " + (counter + 1) + ". " + tk.toString() +
-                                                      "\n");
-                    counter++;
-                }
+        ArrayList<Task> taskList = tasks.getTaskList();
+        StringBuilder stringOfTasksFound = new StringBuilder("     Here are the matching tasks in your list:\n");
+        int counter = 0;
+        for (Task tk : taskList) {
+            String curTaskDescription = tk.getDescription().toLowerCase();
+            if (curTaskDescription.contains(input)) {
+                stringOfTasksFound.append("     " + (counter + 1) + ". " + tk.toString() +
+                                                  "\n");
+                counter++;
             }
-            if (counter == 0) {
-                throw new DukeException("No tasks found.");
-            }
-            stringOfTasksFound.delete(stringOfTasksFound.length() - 1, stringOfTasksFound.length());
-            return ui.showResultOfCommand(stringOfTasksFound.toString());
-        } catch (DukeException e) {
-            return ui.showError(e.getMessage());
         }
+        if (counter == 0) {
+            throw new DukeException("No tasks found.");
+        }
+        stringOfTasksFound.delete(stringOfTasksFound.length() - 1, stringOfTasksFound.length());
+        return ui.showResultOfCommand(stringOfTasksFound.toString());
     }
 }
