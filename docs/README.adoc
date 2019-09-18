@@ -19,7 +19,7 @@ Jump to <<Quick Start>> to get started. Have fun!
 . Double-click the jar file to run the app. Please wait a few seconds for the app to start up.
 
 +
-image::Ui.PNG[User Interface of the Duke App]
+image::Ui.png[User Interface of the Duke App]
 +
 
 . Type commands in the command box at the bottom of the app and press kbd:[Enter] to execute it. +
