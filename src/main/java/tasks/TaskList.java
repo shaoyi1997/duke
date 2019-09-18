@@ -17,10 +17,10 @@ public class TaskList {
     }
 
     /**
-     * Constructor for the tasklist.
+     * Constructs the tasklist.
      * The tasklist will be initialized with all the tasks in the given list.
      *
-     * @param ls tasklist to be initialized with.
+     * @param ls tasklist to be initialized with
      */
     public TaskList(ArrayList<Task> ls) {
         this.addedItems = ls;
@@ -29,7 +29,7 @@ public class TaskList {
     /**
      * Returns the number of tasks in the list.
      *
-     * @return int of the number of tasks in the list.
+     * @return int of the number of tasks in the list
      */
     public int getNumOfTask() {
         return addedItems.size();
@@ -38,8 +38,8 @@ public class TaskList {
     /**
      * Returns a task given its index.
      *
-     * @param idx index of the task to be returned.
-     * @return the task represented by its index.
+     * @param idx index of the task to be returned
+     * @return the task represented by its index
      */
     public Task getTaskByIndex(int idx) {
         return addedItems.get(idx);
@@ -48,7 +48,7 @@ public class TaskList {
     /**
      * Returns the tasklist in an ArrayList.
      *
-     * @return ArrayList of the tasks.
+     * @return ArrayList of the tasks
      */
     public ArrayList<Task> getTaskList() {
         return addedItems;
@@ -57,7 +57,7 @@ public class TaskList {
     /**
      * Deletes a tast in the tasklist.
      *
-     * @param idx index of the task to be deleted.
+     * @param idx index of the task to be deleted
      */
     public void deleteTaskByIdx(int idx) {
         addedItems.remove(idx);
@@ -66,7 +66,7 @@ public class TaskList {
     /**
      * Adds a task into the list.
      *
-     * @param tk task to be added into the list.
+     * @param tk task to be added into the list
      */
     public void addTask(Task tk) {
         addedItems.add(tk);

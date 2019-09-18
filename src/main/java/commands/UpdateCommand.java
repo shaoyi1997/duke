@@ -18,10 +18,10 @@ public class UpdateCommand extends IndexingCommand {
     private String commandInput;
 
     /**
-     * Constructor for the update command.
+     * Constructs the update command.
      *
-     * @param taskNum the index of the task to be updated.
-     * @param commandInput the string of items to change.
+     * @param taskNum the index of the task to be updated
+     * @param commandInput the string of items to change
      */
     public UpdateCommand(int taskNum, String commandInput) {
         super.taskNumber = taskNum;
@@ -31,7 +31,7 @@ public class UpdateCommand extends IndexingCommand {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;

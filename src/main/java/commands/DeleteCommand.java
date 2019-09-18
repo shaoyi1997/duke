@@ -13,9 +13,9 @@ import ui.Ui;
 public class DeleteCommand extends IndexingCommand {
 
     /**
-     * Constructor for the delete command.
+     * Constructs the delete command.
      *
-     * @param taskNum the index of the task to be deleted.
+     * @param taskNum the index of the task to be deleted
      */
     public DeleteCommand(int taskNum) {
         this.taskNumber = taskNum;
@@ -24,7 +24,7 @@ public class DeleteCommand extends IndexingCommand {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;
@@ -32,7 +32,7 @@ public class DeleteCommand extends IndexingCommand {
 
     /**
      * Executes the delete command.
-     * Given task will be deleted from the tasklist at the index position.
+     * Given task will be deleted from the tasklist at the given index position.
      * A completion message will be displayed after successful deletion.
      *
      * @param tasks tasklist that stores all the tasks

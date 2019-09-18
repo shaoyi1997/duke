@@ -3,7 +3,7 @@ package tasks;
 /**
  * Class that represents tasks with a dateTime field.
  */
-abstract public class TimeframedTask extends Task {
+public abstract class TimeframedTask extends Task {
 
     public TimeframedTask(String des) {
         super(des);
@@ -12,8 +12,8 @@ abstract public class TimeframedTask extends Task {
     /**
      * Updates dateTime to the new dateTime given.
      *
-     * @param newDateTime updated dateTime.
+     * @param newDateTime updated dateTime
      */
-    abstract public void setDateTime(String newDateTime);
+    public abstract void setDateTime(String newDateTime);
 
 }

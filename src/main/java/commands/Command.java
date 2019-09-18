@@ -6,12 +6,12 @@ import tasks.TaskList;
 import ui.Ui;
 
 /**
- * Abstract class for a command to be executed when the user inputs a command.
+ * Interface for a command to be executed when the user inputs a command.
  */
-abstract public class Command {
+public interface Command {
 
-    abstract public boolean isExitCommand();
+    boolean isExitCommand();
 
-    abstract public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
 }

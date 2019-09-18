@@ -9,11 +9,11 @@ public class Event extends TimeframedTask {
     protected String at;
 
     /**
-     * Constructor for the event task.
+     * Constructs the event task.
      * Initializes the description and datetime.
      *
-     * @param description description of the event.
-     * @param at date and time on which the event starts.
+     * @param description description of the event
+     * @param at date and time on which the event starts
      */
     public Event(String description, String at) {
         super(description);
@@ -23,7 +23,7 @@ public class Event extends TimeframedTask {
     /**
      * Getter for the description of the event task.
      *
-     * @return the string of the description of the event.
+     * @return the string of the description of the event
      */
     @Override
     public String getDescription() {
@@ -33,7 +33,7 @@ public class Event extends TimeframedTask {
     /**
      * Updates dateTime to the new dateTime given.
      *
-     * @param newDateTime updated dateTime.
+     * @param newDateTime updated dateTime
      */
     public void setDateTime(String newDateTime) {
         this.at = newDateTime;
@@ -42,7 +42,8 @@ public class Event extends TimeframedTask {
     /**
      * Returns the string representation of the event.
      *
-     * @return string consisting of the type of task (event), done marker, description and due date and time.
+     * @return string consisting of the type of task (event), done marker, description and due
+     *         date and time
      */
     @Override
     public String toString() {
@@ -50,9 +51,9 @@ public class Event extends TimeframedTask {
     }
 
     /**
-     * Returns the cloned task.
+     * Clones the task and returns the new copy.
      *
-     * @return cloned task with identical description and done status.
+     * @return cloned task with identical description and done status
      */
     @Override
     public Event clone() {

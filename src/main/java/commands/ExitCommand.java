@@ -7,10 +7,10 @@ import ui.Ui;
 /**
  * Class for the command that prompts the program to terminate.
  */
-public class ExitCommand extends Command {
+public class ExitCommand implements Command {
 
     /**
-     * Constructor for the exit command.
+     * Constructs the exit command.
      */
     public ExitCommand() {
     }
@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return true.
+     * @return true
      */
     public boolean isExitCommand() {
         return true;

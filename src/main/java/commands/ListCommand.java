@@ -8,10 +8,10 @@ import ui.Ui;
 /**
  * Class for the command that prompts the program to terminate.
  */
-public class ListCommand extends Command {
+public class ListCommand implements Command {
 
     /**
-     * Constructor for the list command.
+     * Constructs the list command.
      */
     public ListCommand() {
     }
@@ -19,7 +19,7 @@ public class ListCommand extends Command {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;

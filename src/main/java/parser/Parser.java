@@ -1,6 +1,14 @@
 package parser;
 
-import commands.*;
+import commands.AddCommand;
+import commands.CloneCommand;
+import commands.DeleteCommand;
+import commands.DoneCommand;
+import commands.ExitCommand;
+import commands.FindCommand;
+import commands.ListCommand;
+import commands.UpdateCommand;
+import commands.Command;
 import exception.DukeException;
 import tasks.Deadline;
 import tasks.Event;
@@ -18,9 +26,9 @@ public class Parser {
     /**
      * Parses the command given by the user.
      *
-     * @param input the string representation of the command input by the user.
-     * @return the command object given by the input.
-     * @throws DukeException thrown when comm
+     * @param input the string representation of the command input by the user
+     * @return the command object given by the input
+     * @throws DukeException thrown when command is invalid
      */
     public static Command parse(String input) throws DukeException {
         if (input.equals("bye")) {
@@ -47,9 +55,9 @@ public class Parser {
     /**
      * Parses the add command.
      *
-     * @param input the string representation of the add command.
-     *              Format: type | description /(by||at) datetime.
-     * @return the type of task to be added.
+     * @param input the string representation of the add command
+     *              Format: type | description /(by||at) datetime
+     * @return the type of task to be added
      * @throws DukeException thrown when input length is less than 4
      * @throws ParseException thrown when datetime is in incorrect format
      */

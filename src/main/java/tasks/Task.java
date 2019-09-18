@@ -4,12 +4,12 @@ package tasks;
  * Class for a task in Duke.
  * Consists of the description of the task and a marker to indicate if it is done.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Constructor for the task.
+     * Constructs the task.
      * Initializes the description and done marker for the task.
      * Task is initialized as not done by default.
      *
@@ -37,9 +37,9 @@ public class Task {
     }
 
     /**
-     * Getter for the description of the task.
+     * Gets the description of the task.
      *
-     * @return the string of the description of the task.
+     * @return the string of the description of the task
      */
     public String getDescription() {
         return description;
@@ -48,7 +48,7 @@ public class Task {
     /**
      * Updates description to the new description given.
      *
-     * @param newDescription updated description.
+     * @param newDescription updated description
      */
     public void setDescription(String newDescription) {
         this.description = newDescription;
@@ -59,7 +59,7 @@ public class Task {
     /**
      * Returns the string representation of the task.
      *
-     * @return string consisting of done marker and description of the task.
+     * @return string consisting of done marker and description of the task
      */
     @Override
     public String toString() {
@@ -67,16 +67,10 @@ public class Task {
     }
 
     /**
-     * Returns the cloned task.
+     * Clones the task and returns the new copy.
      *
-     * @return cloned task with identical description and done status.
+     * @return cloned task with identical description and done status
      */
     @Override
-    public Task clone() {
-        Task tk = new Task(description);
-        if (isDone) {
-            tk.markDone();
-        }
-        return tk;
-    }
+    public abstract Task clone();
 }

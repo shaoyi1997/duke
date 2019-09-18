@@ -6,6 +6,7 @@ import tasks.TaskList;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  * A program that tracks a lists of tasks.
@@ -29,11 +30,17 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         try {
-            storage = new Storage("./data/tasks.txt");
+            storage = new Storage("tasks.txt");
             tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
+            try {
+                // creates tasks.txt file if not found
+                FileOutputStream file = new FileOutputStream("tasks.txt");
+                storage = new Storage("tasks.txt");
+                tasks = new TaskList();
+            } catch (FileNotFoundException fileE) {
+                ui.showError("Admin permission required to create text file for backup.");
+            }
         }
     }
 
@@ -41,7 +48,7 @@ public class Duke {
     /**
      * Returns the response of Duke after executing the user command.
      *
-     * @param input the string representation of the user command.
+     * @param input the string representation of the user command
      * @return the string representation of the Duke response
      */
     protected String getResponse(String input) {

@@ -12,9 +12,9 @@ import ui.Ui;
 public class DoneCommand extends IndexingCommand {
 
     /**
-     * Constructor for the done command.
+     * Constructs the done command.
      *
-     * @param taskNum the index of the task to be marked done.
+     * @param taskNum the index of the task to be marked done
      */
     public DoneCommand(int taskNum) {
         super.taskNumber = taskNum;
@@ -23,7 +23,7 @@ public class DoneCommand extends IndexingCommand {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;
@@ -32,7 +32,7 @@ public class DoneCommand extends IndexingCommand {
     /**
      * Executes the done command.
      * Given task will be marked done from the tasklist at the index position.
-     * A completion message will be displayed after successful deletion.
+     * A completion message will be displayed after successful execution.
      *
      * @param tasks tasklist that stores all the tasks
      * @param ui ui object that deals with user interaction
@@ -41,17 +41,14 @@ public class DoneCommand extends IndexingCommand {
      * @throws DukeException exception is thrown when the index falls outside the number of tasks
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
-                throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
-            } else {
-                Task curTask = tasks.getTaskByIndex(taskNumber - 1);
-                curTask.markDone();
-                storage.updateFile(tasks);
-                return ui.showResultOfCommand("     Nice! I've marked this task as done: \n     " + curTask);
-            }
-        } catch (DukeException e) {
-            return ui.showError(e.getMessage());
+        if (isTaskNumOutOfRange(taskNumber, tasks.getNumOfTask())) {
+            throw new DukeException("List only has " + tasks.getNumOfTask() + " items.");
+        } else {
+            Task curTask = tasks.getTaskByIndex(taskNumber - 1);
+            curTask.markDone();
+            storage.updateFile(tasks);
+            return ui.showResultOfCommand("     Nice! I've marked this task as done: \n     "
+                    + curTask);
         }
     }
 }

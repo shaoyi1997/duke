@@ -11,23 +11,23 @@ import java.util.ArrayList;
 /**
  * Class that represents the find command.
  */
-public class FindCommand extends Command {
+public class FindCommand implements Command {
 
-    private String input;
+    private String inputQuery;
 
     /**
-     * Constructor for the find command.
+     * Constructs the find command.
      *
-     * @param ipt the string of search query.
+     * @param ipt the string of search query
      */
     public FindCommand(String ipt) {
-        input = ipt.toLowerCase();
+        inputQuery = ipt.toLowerCase();
     }
 
     /**
      * Indicates if the command is the exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;
@@ -36,6 +36,7 @@ public class FindCommand extends Command {
     /**
      * Executes the find command.
      * Searches within the tasklist if any of the tasks match the search query.
+     * Search keyword is case-insensitive.
      * Displays all tasks that matches.
      *
      * @param tasks tasklist that stores all the tasks
@@ -50,9 +51,8 @@ public class FindCommand extends Command {
         int counter = 0;
         for (Task tk : taskList) {
             String curTaskDescription = tk.getDescription().toLowerCase();
-            if (curTaskDescription.contains(input)) {
-                stringOfTasksFound.append("     " + (counter + 1) + ". " + tk.toString() +
-                                                  "\n");
+            if (curTaskDescription.contains(inputQuery)) {
+                stringOfTasksFound.append("     " + (counter + 1) + ". " + tk.toString() + "\n");
                 counter++;
             }
         }

@@ -9,11 +9,11 @@ public class Deadline extends TimeframedTask {
     protected String by;
 
     /**
-     * Constructor for Deadline task.
+     * Constructs the Deadline task.
      * Initializes the description and due datetime.
      *
-     * @param des description of the deadline.
-     * @param by datetime for which the deadline is due.
+     * @param des description of the deadline
+     * @param by datetime for which the deadline is due
      */
     public Deadline(String des, String by) {
         super(des);
@@ -23,7 +23,7 @@ public class Deadline extends TimeframedTask {
     /**
      * Getter for the description of the deadline task.
      *
-     * @return the string of the description of the deadline.
+     * @return the string of the description of the deadline
      */
     @Override
     public String getDescription() {
@@ -33,7 +33,7 @@ public class Deadline extends TimeframedTask {
     /**
      * Updates dateTime to the new dateTime given.
      *
-     * @param newDateTime updated dateTime.
+     * @param newDateTime updated dateTime
      */
     public void setDateTime(String newDateTime) {
         this.by = newDateTime;
@@ -42,7 +42,8 @@ public class Deadline extends TimeframedTask {
     /**
      * Returns the string representation of the deadline task.
      *
-     * @return string consisting of the type of task (deadline), done marker, description and due date and time.
+     * @return string consisting of the type of task (deadline), done marker, description and due
+     *         date and time
      */
     @Override
     public String toString() {
@@ -50,9 +51,9 @@ public class Deadline extends TimeframedTask {
     }
 
     /**
-     * Returns the cloned task.
+     * Clones the task and returns the new copy.
      *
-     * @return cloned task with identical description and done status.
+     * @return cloned task with identical description and done status
      */
     @Override
     public Deadline clone() {

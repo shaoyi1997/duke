@@ -12,6 +12,11 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    /**
+     * Loads the GUI from the FXML files.
+     *
+     * @param stage stage for JavaFx.
+     */
     @Override
     public void start(Stage stage) {
         try {

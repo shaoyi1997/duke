@@ -12,9 +12,9 @@ import ui.Ui;
 public class CloneCommand extends IndexingCommand {
 
     /**
-     * Constructor for the clone command.
+     * Constructs the clone command.
      *
-     * @param taskNum the index of the task to be cloned.
+     * @param taskNum the index of the task to be cloned
      */
     public CloneCommand(int taskNum) {
         this.taskNumber = taskNum;
@@ -23,7 +23,7 @@ public class CloneCommand extends IndexingCommand {
     /**
      * Indicates whether this is an exit command.
      *
-     * @return false.
+     * @return false
      */
     public boolean isExitCommand() {
         return false;
@@ -31,7 +31,8 @@ public class CloneCommand extends IndexingCommand {
 
     /**
      * Executes the clone command.
-     * Given task at the given index will be cloned into the tasklist.
+     * Given task at the given index will be cloned into the tasklist and added to the tail of
+     * the list.
      * A completion message will be displayed after successful cloning.
      *
      * @param tasks tasklist that stores all the tasks
@@ -48,9 +49,8 @@ public class CloneCommand extends IndexingCommand {
             tasks.addTask(curTask.clone());
             storage.updateFile(tasks);
             return ui.showResultOfCommand("     Noted. I've cloned this task:\n       "
-                                                  + curTask
-                                                  + "\n     Now you have " + tasks.getNumOfTask()
-                                                  + " tasks in the list.");
+                    + curTask + "\n     Now you have " + tasks.getNumOfTask()
+                    + " tasks in the list.");
 
         }
     }
