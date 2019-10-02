@@ -1,4 +1,7 @@
 = Duke - UserGuide
+
+image:https://travis-ci.com/shaoyi1997/duke.svg?branch=master["Build Status", link="https://travis-ci.com/shaoyi1997/duke"]
+
 :toc:
 :sectnums:
 :repoLink: https://github.com/shaoyi1997/duke
@@ -22,8 +25,8 @@ Jump to <<Quick Start>> to get started. Have fun!
 image::Ui.png[User Interface of the Duke App]
 +
 
-. Type commands in the command box at the bottom of the app and press kbd:[Enter] to execute it. +
-eg. typing *`list`* and pressing kbd:[Enter] will list all the tasks in the tasks list.
+. Type commands in the command box at the bottom of the app and press `Enter` on your keyboard to
+execute it. eg. typing *`list`* and pressing `Enter` will list all the tasks in the tasks list.
 . Here are some commands that you can try:
 
 .. *`todo read Clean Code by Robert Martin`*: adds a `todo` task with the corresponding description.
