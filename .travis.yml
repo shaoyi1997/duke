@@ -5,13 +5,6 @@ jdk:
 script:
   - ./gradlew build --scan -s
 
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ./config/travis/deploy_github_pages.sh
-  on:
-    branch: master
-
 sudo: false
 
 before_cache:
